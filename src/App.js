@@ -28,9 +28,31 @@ import {
 
 import myPhoto from "./asserts/myphoto.jpg";
 
+// =========================
+// PERSONAL LINKS
+// =========================
+
 const GITHUB = "https://github.com/adepusaiteja276";
 const LINKEDIN = "https://www.linkedin.com/in/adepusaiteja/";
 const EMAIL = "saitejaadupe885@gmail.com";
+
+// =========================
+// NAVIGATION
+// =========================
+
+const NAV_ITEMS = [
+  "home",
+  "about",
+  "skills",
+  "experience",
+  "projects",
+  "education",
+  "contact",
+];
+
+// =========================
+// PROJECTS
+// =========================
 
 const projects = [
   {
@@ -78,6 +100,10 @@ const projects = [
   },
 ];
 
+// =========================
+// SKILLS
+// =========================
+
 const skillGroups = [
   {
     title: "Programming",
@@ -87,7 +113,13 @@ const skillGroups = [
   {
     title: "Backend",
     icon: <FaServer />,
-    items: ["FastAPI", "Flask", "Spring Boot", "RESTful APIs", "Node.js"],
+    items: [
+      "FastAPI",
+      "Flask",
+      "Spring Boot",
+      "RESTful APIs",
+      "Node.js",
+    ],
   },
   {
     title: "Frontend",
@@ -97,7 +129,13 @@ const skillGroups = [
   {
     title: "Databases",
     icon: <FaDatabase />,
-    items: ["SQL", "PostgreSQL", "MongoDB", "SQLite", "SQLAlchemy"],
+    items: [
+      "SQL",
+      "PostgreSQL",
+      "MongoDB",
+      "SQLite",
+      "SQLAlchemy",
+    ],
   },
   {
     title: "AI & Machine Learning",
@@ -113,7 +151,14 @@ const skillGroups = [
   {
     title: "Core & Tools",
     icon: <FaGitAlt />,
-    items: ["DSA", "OOP", "Git", "GitHub", "Linux", "VS Code"],
+    items: [
+      "DSA",
+      "OOP",
+      "Git",
+      "GitHub",
+      "Linux",
+      "VS Code",
+    ],
   },
 ];
 
@@ -130,22 +175,18 @@ function App() {
   const [formStatus, setFormStatus] = useState("");
   const [sending, setSending] = useState(false);
 
-  const navItems = [
-    "home",
-    "about",
-    "skills",
-    "experience",
-    "projects",
-    "education",
-    "contact",
-  ];
+  // =========================
+  // ACTIVE SECTION ON SCROLL
+  // =========================
 
   useEffect(() => {
     const onScroll = () => {
-      const point = window.scrollY + window.innerHeight * 0.35;
+      const point =
+        window.scrollY + window.innerHeight * 0.35;
+
       let current = "home";
 
-      navItems.forEach((id) => {
+      NAV_ITEMS.forEach((id) => {
         const section = document.getElementById(id);
 
         if (section && section.offsetTop <= point) {
@@ -167,6 +208,10 @@ function App() {
     };
   }, []);
 
+  // =========================
+  // SCROLL TO SECTION
+  // =========================
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
@@ -174,6 +219,10 @@ function App() {
 
     setMenuOpen(false);
   };
+
+  // =========================
+  // FORM CHANGE
+  // =========================
 
   const handleFormChange = (event) => {
     setFormState((prev) => ({
@@ -185,19 +234,25 @@ function App() {
   // =========================
   // EMAILJS CONTACT FORM
   // =========================
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     setFormStatus("");
     setSending(true);
 
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+    const serviceId =
+      process.env.REACT_APP_EMAILJS_SERVICE_ID;
+
+    const templateId =
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+
+    const publicKey =
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
       setFormStatus(
-        "Email service is not configured. Please check the .env file."
+        "Email service is not configured. Please check the environment variables."
       );
 
       setSending(false);
@@ -242,6 +297,7 @@ function App() {
       {/* ================= NAVBAR ================= */}
 
       <header className="nav">
+
         <button
           className="brand"
           onClick={() => scrollToSection("home")}
@@ -253,20 +309,30 @@ function App() {
 
         <button
           className="mobile-menu"
-          onClick={() => setMenuOpen((value) => !value)}
+          onClick={() =>
+            setMenuOpen((value) => !value)
+          }
           aria-label="Toggle navigation"
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        <nav className={`nav-right ${menuOpen ? "open" : ""}`}>
-          {navItems.map((item) => (
+        <nav
+          className={`nav-right ${
+            menuOpen ? "open" : ""
+          }`}
+        >
+          {NAV_ITEMS.map((item) => (
             <button
               key={item}
               className={
-                activeSection === item ? "nav-active" : ""
+                activeSection === item
+                  ? "nav-active"
+                  : ""
               }
-              onClick={() => scrollToSection(item)}
+              onClick={() =>
+                scrollToSection(item)
+              }
             >
               {item}
             </button>
@@ -307,6 +373,7 @@ function App() {
                 duration: 0.7,
               }}
             >
+
               <p className="eyebrow">
                 CSE • ARTIFICIAL INTELLIGENCE & MACHINE LEARNING
               </p>
@@ -317,7 +384,9 @@ function App() {
 
               <h2 className="hero-role">
                 Java Full Stack Developer{" "}
-                <span className="role-divider">|</span>{" "}
+                <span className="role-divider">
+                  |
+                </span>{" "}
                 AI/ML Engineer
               </h2>
 
@@ -331,9 +400,12 @@ function App() {
 
                 <button
                   className="btn-primary"
-                  onClick={() => scrollToSection("projects")}
+                  onClick={() =>
+                    scrollToSection("projects")
+                  }
                 >
-                  Explore Projects <FaArrowDown />
+                  Explore Projects{" "}
+                  <FaArrowDown />
                 </button>
 
                 <a
@@ -383,6 +455,7 @@ function App() {
                 </a>
 
               </div>
+
             </motion.div>
 
             <motion.div
@@ -400,6 +473,7 @@ function App() {
                 delay: 0.1,
               }}
             >
+
               <div className="photo-frame">
 
                 <div className="photo-ring" />
@@ -416,6 +490,7 @@ function App() {
                 </div>
 
               </div>
+
             </motion.div>
 
           </div>
@@ -469,6 +544,7 @@ function App() {
 
                 <span>
                   <b>B.Tech CSE (AI & ML)</b>
+
                   <small>
                     MRCET • 2023 – Present
                   </small>
@@ -480,7 +556,10 @@ function App() {
 
                 <span>
                   <b>Hyderabad, Telangana</b>
-                  <small>India</small>
+
+                  <small>
+                    India
+                  </small>
                 </span>
               </div>
 
@@ -489,6 +568,7 @@ function App() {
 
                 <span>
                   <b>Software + AI/ML</b>
+
                   <small>
                     Backend, Full Stack & intelligent systems
                   </small>
@@ -496,6 +576,7 @@ function App() {
               </div>
 
             </div>
+
           </div>
         </section>
 
@@ -514,7 +595,9 @@ function App() {
                 TOOLKIT
               </p>
 
-              <h2>Technical Skills</h2>
+              <h2>
+                Technical Skills
+              </h2>
             </div>
 
           </div>
@@ -531,9 +614,13 @@ function App() {
 
                 <div className="skill-group-head">
 
-                  <span>{group.icon}</span>
+                  <span>
+                    {group.icon}
+                  </span>
 
-                  <h3>{group.title}</h3>
+                  <h3>
+                    {group.title}
+                  </h3>
 
                 </div>
 
@@ -568,7 +655,9 @@ function App() {
                 EXPERIENCE
               </p>
 
-              <h2>Internships</h2>
+              <h2>
+                Internships
+              </h2>
             </div>
 
           </div>
@@ -582,11 +671,13 @@ function App() {
               <div className="timeline-card">
 
                 <div className="timeline-top">
+
                   <span>
                     Nov 2025 – Jan 2026
                   </span>
 
                   <FaBriefcase />
+
                 </div>
 
                 <h3>
@@ -598,6 +689,7 @@ function App() {
                 </h4>
 
                 <ul>
+
                   <li>
                     Engineered RESTful API services for the
                     BragBoard (StarWall) employee recognition
@@ -614,14 +706,17 @@ function App() {
                     FastAPI services and validated API workflows
                     through testing and debugging.
                   </li>
+
                 </ul>
 
                 <div className="experience-tags">
+
                   <span>Python</span>
                   <span>FastAPI</span>
                   <span>React</span>
                   <span>SQLAlchemy</span>
                   <span>JWT</span>
+
                 </div>
 
               </div>
@@ -634,11 +729,13 @@ function App() {
               <div className="timeline-card">
 
                 <div className="timeline-top">
+
                   <span>
                     Jul 2025 – Aug 2025
                   </span>
 
                   <FaBriefcase />
+
                 </div>
 
                 <h3>
@@ -650,6 +747,7 @@ function App() {
                 </h4>
 
                 <ul>
+
                   <li>
                     Built a cuisine classification pipeline using
                     Random Forest with data preprocessing and
@@ -667,14 +765,17 @@ function App() {
                     preprocessing, model training, evaluation and
                     performance analysis.
                   </li>
+
                 </ul>
 
                 <div className="experience-tags">
+
                   <span>Python</span>
                   <span>Scikit-learn</span>
                   <span>Pandas</span>
                   <span>NumPy</span>
                   <span>Streamlit</span>
+
                 </div>
 
               </div>
@@ -698,7 +799,9 @@ function App() {
                 SELECTED WORK
               </p>
 
-              <h2>Featured Projects</h2>
+              <h2>
+                Featured Projects
+              </h2>
             </div>
 
           </div>
@@ -787,7 +890,8 @@ function App() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Live Demo <FaExternalLinkAlt />
+                        Live Demo{" "}
+                        <FaExternalLinkAlt />
                       </a>
                     ) : (
                       <span className="disabled-link">
@@ -812,7 +916,8 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              View All GitHub Projects <FaArrowRight />
+              View All GitHub Projects{" "}
+              <FaArrowRight />
             </a>
 
           </div>
@@ -884,6 +989,7 @@ function App() {
                 </h3>
 
                 <ul>
+
                   <li>
                     AWS Academy Graduate – Generative AI Foundations
                   </li>
@@ -891,6 +997,7 @@ function App() {
                   <li>
                     Web Development Training – Internshala Trainings
                   </li>
+
                 </ul>
 
               </div>
@@ -938,7 +1045,10 @@ function App() {
                 <FaEnvelope />
 
                 <span>
-                  <small>Email</small>
+                  <small>
+                    Email
+                  </small>
+
                   {EMAIL}
                 </span>
               </a>
@@ -952,7 +1062,10 @@ function App() {
                 <FaLinkedin />
 
                 <span>
-                  <small>LinkedIn</small>
+                  <small>
+                    LinkedIn
+                  </small>
+
                   linkedin.com/in/adepusaiteja
                 </span>
               </a>
@@ -966,7 +1079,10 @@ function App() {
                 <FaGithub />
 
                 <span>
-                  <small>GitHub</small>
+                  <small>
+                    GitHub
+                  </small>
+
                   github.com/adepusaiteja276
                 </span>
               </a>
@@ -992,7 +1108,6 @@ function App() {
                     placeholder="Your name"
                     required
                   />
-
                 </label>
 
                 <label>
@@ -1006,7 +1121,6 @@ function App() {
                     placeholder="you@example.com"
                     required
                   />
-
                 </label>
 
               </div>
@@ -1022,7 +1136,6 @@ function App() {
                   placeholder="Tell me about the opportunity or project..."
                   required
                 />
-
               </label>
 
               <button
@@ -1061,6 +1174,7 @@ function App() {
       <footer className="footer">
 
         <div>
+
           <strong>
             ADEPU SAITEJA
           </strong>
@@ -1068,6 +1182,7 @@ function App() {
           <span>
             Java Full Stack Developer | AI/ML Engineer
           </span>
+
         </div>
 
         <div className="footer-links">
