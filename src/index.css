@@ -1,0 +1,3 @@
+html { background: #020617; }
+body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+::selection { background: rgba(56, 189, 248, .25); color: #e8f3fb; }
