@@ -241,23 +241,22 @@ function App() {
     setFormStatus("");
     setSending(true);
 
+    // EmailJS configuration
+    // Environment variables are preferred.
+    // Fallback values allow the contact form to work
+    // even if Vercel does not inject the variables.
+
     const serviceId =
-      process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      process.env.REACT_APP_EMAILJS_SERVICE_ID ||
+      "service_48imogh";
 
     const templateId =
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID ||
+      "template_r9h13gc";
 
     const publicKey =
-      process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setFormStatus(
-        "Email service is not configured. Please check the environment variables."
-      );
-
-      setSending(false);
-      return;
-    }
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY ||
+      "6T8tUiFc99o9bbpzB";
 
     try {
       await emailjs.send(
